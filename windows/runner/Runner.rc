@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "vasiliy.efimov" "\0"
-            VALUE "FileDescription", "ez_backend" "\0"
+            VALUE "FileDescription", "EZ Backend" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "ez_backend" "\0"
+            VALUE "InternalName", "EZ Backend" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 vasiliy.efimov. All rights reserved." "\0"
             VALUE "OriginalFilename", "ez_backend.exe" "\0"
-            VALUE "ProductName", "ez_backend" "\0"
+            VALUE "ProductName", "EZ Backend" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
