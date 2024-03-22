@@ -37,6 +37,7 @@ dependencies:
   archive: ^3.4.10
   animated_tree_view: ^2.2.0
   flutter_window_close: ^1.0.0
+  sliding_up_panel2: ^3.3.0+1
 
 
   # The following adds the Cupertino Icons font to your application.
