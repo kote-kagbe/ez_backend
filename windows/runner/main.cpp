@@ -26,7 +26,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
 
   FlutterWindow window(project);
   Win32Window::Point origin(500, 200);
-  Win32Window::Size size(1000, 800);
+  Win32Window::Size size(700, 900);
   if (!window.Create(L"EZ Backend", origin, size)) {
     return EXIT_FAILURE;
   }
