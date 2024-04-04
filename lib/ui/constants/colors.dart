@@ -15,7 +15,7 @@ class AppSchemeColor extends Color {
 class AppColorScheme {
   AppColorScheme([
     this.mainBackground = const AppSchemeColor(0xfff8f8f8),
-    this.mainElementBackgound = const AppSchemeColor(0xffffffff),
+    this.mainElementBackground = const AppSchemeColor(0xffffffff),
     this.mainElementHover = const AppSchemeColor(0xfff3f4f8),
     this.mainText = const AppSchemeColor(0xff000000),
     //
@@ -32,7 +32,7 @@ class AppColorScheme {
   ]);
 
   AppSchemeColor mainBackground;
-  AppSchemeColor mainElementBackgound;
+  AppSchemeColor mainElementBackground;
   AppSchemeColor mainElementHover;
   AppSchemeColor mainText;
   //
