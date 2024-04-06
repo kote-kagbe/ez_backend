@@ -1,7 +1,5 @@
-class AppConfig {
-  static final AppConfig _instance = AppConfig._single();
+part 'app_config_main.dart';
 
-  AppConfig._single();
-
-  factory AppConfig.instance() => _instance;
+sealed class AppConfigItem {
+  Future<void> update();
 }
