@@ -7,6 +7,7 @@ import 'package:ez_backend/intercom/constants/strings.dart'
 import 'package:ez_backend/intercom/app_config/app_config.dart' show AppConfig;
 import 'package:ez_backend/ui/application/root.dart';
 import 'package:ez_backend/intercom/app_config/bloc/app_config_bloc.dart';
+import 'package:ez_backend/ui/constants/colors.dart';
 
 class EzBackendApp extends StatelessWidget {
   const EzBackendApp({super.key});
@@ -27,7 +28,7 @@ class EzBackendApp extends StatelessWidget {
             child: MaterialApp(
               title: applicationTitle,
               theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+                colorScheme: ColorScheme.fromSeed(seedColor: systemColor),
                 useMaterial3: true,
               ),
               home: const AppRootScreen(),

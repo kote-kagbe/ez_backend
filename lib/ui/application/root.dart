@@ -34,12 +34,5 @@ class AppRootScreen extends StatelessWidget {
           }
         },
         child: const SplashScreen());
-    // return BlocBuilder<AppConfigBloc, AppConfigState>(
-    //     buildWhen: (prevState, newState) => prevState != newState,
-    //     builder: (context, event) => switch (event.value) {
-    //           AppConfigStateValue.ready => const StandListScreen(),
-    //           AppConfigStateValue.error => const ErrorScreen(),
-    //           _ => const SplashScreen()
-    //         });
   }
 }
