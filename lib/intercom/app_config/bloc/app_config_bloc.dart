@@ -12,19 +12,15 @@ class AppConfigBloc extends Bloc<AppConfigEvent, AppConfigState> {
 
   AppConfigBloc({required this.config})
       : super(const AppConfigState(AppConfigStateValue.init)) {
-    on<AppConfigUpdate>((event, emit) async {
-      // почему-то внутри обработчика должен быть только синхронный код, подписка на Future не работает
+    on<AppConfigUpdate>((event, Emitter emit) async {
       emit(const AppConfigState(AppConfigStateValue.init));
-      if (await config.update() == true) {
-        emit(const AppConfigState(AppConfigStateValue.ready));
-      }
-      // config.update().then((result) {
-      //   if (result) {
-      //     emit(const AppConfigState(AppConfigStateValue.ready));
-      //   }
-      // }, onError: (_) {
-      //   emit(const AppConfigState(AppConfigStateValue.error));
-      // });
+      return config.update().then((result) {
+        if (result) {
+          emit(const AppConfigState(AppConfigStateValue.ready));
+        }
+      }, onError: (_) {
+        emit(const AppConfigState(AppConfigStateValue.error));
+      });
     });
   }
 }
