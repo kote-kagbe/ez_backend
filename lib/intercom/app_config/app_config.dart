@@ -30,16 +30,6 @@ class AppConfig {
   AppColorScheme colorScheme;
   SystemFolders systemFolders;
 //////////////////////////////////////////////////////////////////////////////
-  // список элементов, которые можно перечитать из конфига
-  // имена совпадают с именем соответствующей переменной
-  final _canUpdate = <UpdateData>[
-    (
-      name: 'colorScheme',
-      builder: AppColorScheme.fromJson,
-      variable: #colorScheme
-    ),
-  ];
-//////////////////////////////////////////////////////////////////////////////
 
   // метод для перечитывания конфига с диска
   Future<bool> update() async {
@@ -52,12 +42,8 @@ class AppConfig {
     // читаем из файла
     final Map<String, dynamic> json = {};
     // обновляем указанные поля
-    for (final element in _canUpdate) {
-      final data = json[element.name];
-      if (data != null) {
-        var variable = element.variable;
-        variable = element.builder(data);
-      }
+    if (json.containsKey('colorScheme')) {
+      colorScheme = AppColorScheme.fromJson(json['colorScheme']);
     }
     _init = true;
     return _init!;
