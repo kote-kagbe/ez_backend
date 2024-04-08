@@ -23,6 +23,8 @@ class AppConfig {
     this.systemFolders = const SystemFolders(),
   ]);
 
+  bool? _init;
+
 //////////////////////////////////////////////////////////////////////////////
   // элементы конфига
   AppColorScheme colorScheme;
@@ -41,6 +43,12 @@ class AppConfig {
 
   // метод для перечитывания конфига с диска
   Future<bool> update() async {
+    if (_init != null) {
+      return Future.value(_init);
+    }
+    _init = false;
+    // папки в первую очередь
+    systemFolders = await systemFolders.setup();
     // читаем из файла
     final Map<String, dynamic> json = {};
     // обновляем указанные поля
@@ -51,9 +59,8 @@ class AppConfig {
         variable = element.builder(data);
       }
     }
-    // добиваем нестандартные случаи
-    systemFolders = await systemFolders.setup();
-    return true;
+    _init = true;
+    return _init!;
   }
 
   factory AppConfig.fromJson(Map<String, dynamic> json) =>
