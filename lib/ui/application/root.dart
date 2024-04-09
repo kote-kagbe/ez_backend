@@ -6,6 +6,9 @@ import 'package:ez_backend/intercom/app_config/bloc/app_config_bloc.dart';
 import 'package:ez_backend/ui/application/splash.dart';
 import 'package:ez_backend/ui/application/error.dart';
 import 'package:ez_backend/ui/stand_list/list.dart';
+import 'package:ez_backend/intercom/constants/strings.dart'
+    show applicationTitle;
+import 'package:ez_backend/intercom/app_config/app_config.dart' show AppConfig;
 
 class AppRootScreen extends StatelessWidget {
   const AppRootScreen({super.key});
@@ -33,6 +36,14 @@ class AppRootScreen extends StatelessWidget {
               }
           }
         },
-        child: const SplashScreen());
+        child: MaterialApp(
+            title: applicationTitle,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(
+                  seedColor:
+                      context.read<AppConfig>().colorScheme.sideMenuBackground),
+              useMaterial3: true,
+            ),
+            home: const StandListScreen()));
   }
 }

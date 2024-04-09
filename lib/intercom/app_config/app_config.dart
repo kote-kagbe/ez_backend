@@ -33,6 +33,7 @@ class AppConfig {
 
   // метод для перечитывания конфига с диска
   Future<bool> update() async {
+    await Future.delayed(const Duration(seconds: 4));
     if (_init != null) {
       return Future.value(_init);
     }

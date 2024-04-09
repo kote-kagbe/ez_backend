@@ -8,7 +8,6 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<AppConfigBloc>().add(AppConfigUpdate());
     return Scaffold(
         body: Container(
       color: const Color(0xff2c3e50),
