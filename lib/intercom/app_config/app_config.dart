@@ -12,7 +12,7 @@ typedef UpdateData<T> = ({
   Symbol variable
 });
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, ignoreUnannotated: true)
 class AppConfig {
   static final AppConfig _instance = AppConfig();
 
@@ -27,6 +27,7 @@ class AppConfig {
 
 //////////////////////////////////////////////////////////////////////////////
   // элементы конфига
+  @JsonKey()
   AppColorScheme colorScheme;
   SystemFolders systemFolders;
 //////////////////////////////////////////////////////////////////////////////
