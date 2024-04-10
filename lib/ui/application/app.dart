@@ -11,16 +11,11 @@ import 'package:ez_backend/ui/application/splash.dart';
 import 'package:ez_backend/intercom/app_config/bloc/app_config_bloc.dart';
 import 'package:ez_backend/ui/constants/colors.dart';
 
-class EzBackendApp extends StatefulWidget {
+class EzBackendApp extends StatelessWidget {
   const EzBackendApp(this.configInit, {super.key});
 
   final Future<bool> configInit;
 
-  @override
-  State<StatefulWidget> createState() => EzBackendAppState();
-}
-
-class EzBackendAppState extends State<EzBackendApp> {
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
@@ -35,7 +30,7 @@ class EzBackendAppState extends State<EzBackendApp> {
               ),
             ],
             child: FutureBuilder(
-                future: widget.configInit,
+                future: configInit,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasError) {
