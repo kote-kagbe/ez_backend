@@ -1,6 +1,3 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:ez_backend/intercom/app_config/bloc/app_config_bloc.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {

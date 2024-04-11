@@ -17,12 +17,12 @@ class AppSchemeColor extends Color {
 @JsonSerializable(explicitToJson: true)
 class AppColorScheme {
   const AppColorScheme([
-    this.mainBackground = const AppSchemeColor(systemColorValue),
+    this.mainBackground = const AppSchemeColor(0xfff8f8f8),
     this.mainElementBackground = const AppSchemeColor(0xffffffff),
     this.mainElementHover = const AppSchemeColor(0xfff3f4f8),
     this.mainText = const AppSchemeColor(0xff000000),
     //
-    this.sideMenuBackground = const AppSchemeColor(0xff2c3e50),
+    this.sideMenuBackground = const AppSchemeColor(systemColorValue),
     this.sideMenuItemHover = const AppSchemeColor(0xff3e5266),
     this.sideMenuItemText = const AppSchemeColor(0xffe9ebec),
     this.sideMenuItemAddText = const AppSchemeColor(0xff98b2ca),
