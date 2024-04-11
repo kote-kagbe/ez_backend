@@ -9,6 +9,7 @@ import 'package:ez_backend/ui/stand_list/list.dart';
 import 'package:ez_backend/intercom/constants/strings.dart'
     show applicationTitle;
 import 'package:ez_backend/ui/constants/colors.dart';
+import 'package:ez_backend/intercom/app_config/app_config.dart' show AppConfig;
 
 class AppRootScreen extends StatelessWidget {
   const AppRootScreen({super.key});
@@ -27,7 +28,17 @@ class AppRootScreen extends StatelessWidget {
                   ),
                   home: const ErrorScreen(),
                 ),
-              AppConfigStateValue.ready => StandListScreen(),
+              AppConfigStateValue.ready => MaterialApp(
+                  title: applicationTitle,
+                  theme: ThemeData(
+                    colorScheme: ColorScheme.fromSeed(
+                        seedColor: context
+                            .read<AppConfig>()
+                            .colorScheme
+                            .sideMenuBackground),
+                    useMaterial3: true,
+                  ),
+                  home: const StandListScreen()),
               _ => MaterialApp(
                   title: applicationTitle,
                   theme: ThemeData(

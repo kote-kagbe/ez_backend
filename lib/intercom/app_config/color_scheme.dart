@@ -16,7 +16,7 @@ class AppSchemeColor extends Color {
 
 @JsonSerializable(explicitToJson: true)
 class AppColorScheme {
-  const AppColorScheme([
+  const AppColorScheme({
     this.mainBackground = const AppSchemeColor(0xfff8f8f8),
     this.mainElementBackground = const AppSchemeColor(0xffffffff),
     this.mainElementHover = const AppSchemeColor(0xfff3f4f8),
@@ -32,7 +32,7 @@ class AppColorScheme {
     this.highlight = const AppSchemeColor(0xffff9c6c),
     this.error = const AppSchemeColor(systemErrorColorValue),
     this.inactive = const AppSchemeColor(0xff909090),
-  ]);
+  });
 
   final AppSchemeColor mainBackground;
   final AppSchemeColor mainElementBackground;

@@ -11,7 +11,7 @@ class AppConfigBloc extends Bloc<AppConfigEvent, AppConfigState> {
   final AppConfig config;
 
   AppConfigBloc({required this.config})
-      : super(const AppConfigState(AppConfigStateValue.init)) {
+      : super(const AppConfigState(AppConfigStateValue.ready)) {
     on<AppConfigUpdate>((event, Emitter emit) async {
       emit(const AppConfigState(AppConfigStateValue.init));
       return config.update().then((result) {

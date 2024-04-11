@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:ez_backend/intercom/app_config/app_config.dart' show AppConfig;
+
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -7,7 +11,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      color: const Color(0xff2c3e50),
+      color: context.read<AppConfig>().colorScheme.sideMenuBackground,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           CircularProgressIndicator(),
@@ -17,9 +21,13 @@ class SplashScreen extends StatelessWidget {
           children: [
             Container(
                 margin: const EdgeInsets.only(top: 16),
-                child: const Text(
+                child: Text(
                   'инициализация...',
-                  style: TextStyle(color: Color(0xffe9ebec)),
+                  style: TextStyle(
+                      color: context
+                          .read<AppConfig>()
+                          .colorScheme
+                          .sideMenuItemText),
                 ))
           ],
         )
