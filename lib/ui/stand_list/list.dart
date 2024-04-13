@@ -27,9 +27,11 @@ class StandListScreen extends StatelessWidget {
       ]),
       drawer: StandListDrawer(),
       appBar: AppBar(
-          foregroundColor: cfg.colorScheme.sideMenuBackground,
+          foregroundColor: cfg.colorScheme.sideMenuItemText,
+          backgroundColor: cfg.colorScheme.sideMenuBackground,
           title: Text(
             applicationTitle,
+            style: TextStyle(color: cfg.colorScheme.sideMenuItemText),
           )),
     );
   }
