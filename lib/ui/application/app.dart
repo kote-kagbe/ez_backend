@@ -14,7 +14,7 @@ import 'package:ez_backend/ui/constants/colors.dart';
 class EzBackendApp extends StatelessWidget {
   const EzBackendApp(this.configInit, {super.key});
 
-  final Future<bool> configInit;
+  final Future configInit;
 
   @override
   Widget build(BuildContext context) {

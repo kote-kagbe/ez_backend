@@ -19,6 +19,7 @@ class StandListScreen extends StatelessWidget {
         const Text('stand list'),
         IconButton(
             onPressed: () {
+              cfg.customColorScheme = true;
               cfg.colorScheme = AppColorScheme(
                   sideMenuBackground: AppSchemeColor(Colors.yellow.value));
               context.read<AppConfigBloc>().add(const AppConfigUpdate());

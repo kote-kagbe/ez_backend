@@ -26,8 +26,6 @@ class AppConfig {
     this.customColorScheme = false,
   ]);
 
-  bool? _init;
-
 //////////////////////////////////////////////////////////////////////////////
   // элементы файла конфига
   @JsonKey()
@@ -41,13 +39,9 @@ class AppConfig {
 //////////////////////////////////////////////////////////////////////////////
 
   // метод для перечитывания конфига с диска
-  Future<bool> update(
+  Future<void> update(
       {String? configPath, bool resetColorScheme = false}) async {
     await Future.delayed(const Duration(seconds: 4));
-    if (_init != null) {
-      return Future.value(_init);
-    }
-    _init = false;
     // папки в первую очередь
     systemFolders = await systemFolders.setup();
     // версия
@@ -55,7 +49,7 @@ class AppConfig {
     appVersion = '${packageInfo.version}.${packageInfo.buildNumber}';
     // читаем из файла
     Map<String, dynamic>? json = await _loadConfig(configPath);
-    // обновляем указанные поля
+    // обновляем цветовую схему
     if (!resetColorScheme && json != null && json.containsKey('colorScheme')) {
       colorScheme = AppColorScheme.fromJson(json['colorScheme']);
       customColorScheme = configPath != null;
@@ -63,8 +57,6 @@ class AppConfig {
       customColorScheme = false;
       colorScheme = const AppColorScheme();
     }
-    _init = true;
-    return _init!;
   }
 
   Future<Map<String, dynamic>?> _loadConfig(String? path) async {

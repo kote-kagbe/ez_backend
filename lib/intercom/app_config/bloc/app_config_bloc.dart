@@ -18,10 +18,8 @@ class AppConfigBloc extends Bloc<AppConfigEvent, AppConfigState> {
           .update(
               configPath: event.configPath,
               resetColorScheme: event.resetColorScheme)
-          .then((result) {
-        if (result) {
-          emit(const AppConfigState(AppConfigStateValue.ready));
-        }
+          .then((_) {
+        emit(const AppConfigState(AppConfigStateValue.ready));
       }, onError: (_) {
         emit(const AppConfigState(AppConfigStateValue.error));
       });
