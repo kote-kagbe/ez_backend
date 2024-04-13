@@ -38,7 +38,8 @@ class AppRootScreen extends StatelessWidget {
                             .sideMenuBackground),
                     useMaterial3: true,
                   ),
-                  home: const StandListScreen()),
+                  home: const StandListScreen(),
+                ),
               _ => MaterialApp(
                   title: applicationTitle,
                   theme: ThemeData(

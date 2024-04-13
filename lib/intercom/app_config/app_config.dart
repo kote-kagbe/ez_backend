@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:ez_backend/intercom/app_config/color_scheme.dart';
 import 'package:ez_backend/intercom/app_config/system_folders.dart';
@@ -21,15 +22,22 @@ class AppConfig {
   AppConfig([
     this.colorScheme = const AppColorScheme(),
     this.systemFolders = const SystemFolders(),
+    this.appVersion = '0.0.0.0',
+    this.customColorScheme = false,
   ]);
 
   bool? _init;
 
 //////////////////////////////////////////////////////////////////////////////
-  // элементы конфига
+  // элементы файла конфига
   @JsonKey()
   AppColorScheme colorScheme;
+  @JsonKey()
+  bool customColorScheme;
+//////////////////////////////////////////////////////////////////////////////
+  // вычисляемые элементы
   SystemFolders systemFolders;
+  String appVersion;
 //////////////////////////////////////////////////////////////////////////////
 
   // метод для перечитывания конфига с диска
@@ -41,6 +49,11 @@ class AppConfig {
     _init = false;
     // папки в первую очередь
     systemFolders = await systemFolders.setup();
+    // версия
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    appVersion = '${packageInfo.version}.${packageInfo.buildNumber}';
+    // признак кастомной схемы
+    customColorScheme = configPath != null;
     // читаем из файла
     final Map<String, dynamic> json = {};
     // обновляем указанные поля
