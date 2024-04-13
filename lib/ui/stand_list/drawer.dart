@@ -64,7 +64,8 @@ class StandListDrawer extends StatelessWidget {
                                     tooltip: 'Сбросить цветовую схему',
                                     onPressed: () => context
                                         .read<AppConfigBloc>()
-                                        .add(const AppConfigUpdate()),
+                                        .add(const AppConfigUpdate(
+                                            resetColorScheme: true)),
                                     icon: Icon(
                                       Icons.palette,
                                       color:

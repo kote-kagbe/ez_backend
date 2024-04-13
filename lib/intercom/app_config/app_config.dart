@@ -41,7 +41,8 @@ class AppConfig {
 //////////////////////////////////////////////////////////////////////////////
 
   // метод для перечитывания конфига с диска
-  Future<bool> update({String? configPath}) async {
+  Future<bool> update(
+      {String? configPath, bool resetColorScheme = false}) async {
     await Future.delayed(const Duration(seconds: 4));
     if (_init != null) {
       return Future.value(_init);
@@ -52,16 +53,22 @@ class AppConfig {
     // версия
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     appVersion = '${packageInfo.version}.${packageInfo.buildNumber}';
-    // признак кастомной схемы
-    customColorScheme = configPath != null;
     // читаем из файла
-    final Map<String, dynamic> json = {};
+    Map<String, dynamic>? json = await _loadConfig(configPath);
     // обновляем указанные поля
-    if (json.containsKey('colorScheme')) {
+    if (!resetColorScheme && json != null && json.containsKey('colorScheme')) {
       colorScheme = AppColorScheme.fromJson(json['colorScheme']);
+      customColorScheme = configPath != null;
+    } else {
+      customColorScheme = false;
+      colorScheme = const AppColorScheme();
     }
     _init = true;
     return _init!;
+  }
+
+  Future<Map<String, dynamic>?> _loadConfig(String? path) async {
+    return Future.value();
   }
 
   factory AppConfig.fromJson(Map<String, dynamic> json) =>
