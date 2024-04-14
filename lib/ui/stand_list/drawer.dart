@@ -11,20 +11,18 @@ class StandListDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final cfg = context.read<AppConfig>();
     return Drawer(
+
         child: Column(children: [
-      Container(
-          color: cfg.colorScheme.sideMenuBackground,
-          child: const Align(
+          const Align(
               alignment: Alignment.topCenter,
               child: DrawerHeader(
                 child: Image(
                   image: AssetImage('assets/img/logo.png'),
                 ),
-              ))),
+              )),
       Expanded(
           child: Container(
               padding: const EdgeInsets.only(bottom: 8),
-              color: cfg.colorScheme.sideMenuBackground,
               child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Column(
@@ -34,7 +32,6 @@ class StandListDrawer extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Container(
-                                color: cfg.colorScheme.sideMenuBackground,
                               ),
                             )
                           ],
@@ -44,20 +41,11 @@ class StandListDrawer extends StatelessWidget {
                             children: [
                               TextButton.icon(
                                   onPressed: () {},
-                                  style: ButtonStyle(
-                                      overlayColor:
-                                          MaterialStateColor.resolveWith((_) =>
-                                              cfg.colorScheme
-                                                  .sideMenuItemHover)),
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.palette_outlined,
-                                    color: cfg.colorScheme.sideMenuItemAddText,
                                   ),
-                                  label: Text(
+                                  label: const Text(
                                     'изменить оформление',
-                                    style: TextStyle(
-                                        color: cfg
-                                            .colorScheme.sideMenuItemAddText),
                                   )),
                               if (cfg.customColorScheme)
                                 IconButton(
@@ -66,26 +54,20 @@ class StandListDrawer extends StatelessWidget {
                                         .read<AppConfigBloc>()
                                         .add(const AppConfigUpdate(
                                             resetColorScheme: true)),
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.palette,
-                                      color:
-                                          cfg.colorScheme.sideMenuItemAddText,
                                     ))
                             ]),
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Ефимов В.П., 2024',
-                                style: TextStyle(
-                                    color: cfg.colorScheme.sideMenuItemAddText))
+                            Text('Ефимов В.П., 2024',)
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(cfg.appVersion,
-                                style: TextStyle(
-                                    color: cfg.colorScheme.sideMenuItemAddText))
+                            Text(cfg.appVersion,)
                           ],
                         ),
                       ]))))

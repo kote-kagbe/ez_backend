@@ -11,6 +11,7 @@ import 'package:ez_backend/intercom/constants/strings.dart'
     show applicationTitle;
 import 'package:ez_backend/ui/constants/colors.dart';
 import 'package:ez_backend/intercom/app_config/app_config.dart' show AppConfig;
+import 'package:ez_backend/ui/application/theme.dart';
 
 class AppRootScreen extends StatelessWidget {
   const AppRootScreen({super.key});
@@ -33,57 +34,15 @@ class AppRootScreen extends StatelessWidget {
                 scrollBehavior: const MaterialScrollBehavior()
                     .copyWith(dragDevices: PointerDeviceKind.values.toSet()),
                   title: applicationTitle,
-                  theme: ThemeData(
-                      scaffoldBackgroundColor: context
-                          .read<AppConfig>()
-                          .colorScheme.mainBackground,
-                    colorScheme: ColorScheme.fromSeed(
-                        seedColor: context
-                            .read<AppConfig>()
-                            .colorScheme
-                            .sideMenuBackground),
-                    useMaterial3: true,
-                  ),
+                  theme: appTheme(context.read<AppConfig>().colorScheme) ,
                   home: const StandListScreen(),
                 ),
               _ => MaterialApp(
                   title: applicationTitle,
-                  theme: ThemeData(
-                    colorScheme: ColorScheme.fromSeed(seedColor: systemColor),
-                    useMaterial3: true,
-                  ),
+                  theme: splashTheme(context.read<AppConfig>().colorScheme),
                   home: const SplashScreen(),
                 )
-            });
-    // return BlocListener<AppConfigBloc, AppConfigState>(
-    //     listenWhen: (prevState, newState) => prevState != newState,
-    //     listener: (context, event) {
-    //       switch (event.value) {
-    //         case AppConfigStateValue.ready:
-    //           {
-    //             Navigator.of(context).pushReplacement(
-    //                 MaterialPageRoute(builder: (_) => const StandListScreen()));
-    //           }
-    //         case AppConfigStateValue.error:
-    //           {
-    //             Navigator.of(context).pushReplacement(
-    //                 MaterialPageRoute(builder: (_) => const ErrorScreen()));
-    //           }
-    //         case _:
-    //           {
-    //             Navigator.of(context).pushReplacement(
-    //                 MaterialPageRoute(builder: (_) => const SplashScreen()));
-    //           }
-    //       }
-    //     },
-    //     child: MaterialApp(
-    //         title: applicationTitle,
-    //         theme: ThemeData(
-    //           colorScheme: ColorScheme.fromSeed(
-    //               seedColor:
-    //                   context.read<AppConfig>().colorScheme.sideMenuBackground),
-    //           useMaterial3: true,
-    //         ),
-    //         home: const StandListScreen()));
+        }
+    );
   }
 }

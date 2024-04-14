@@ -9,7 +9,7 @@ import 'package:ez_backend/ui/application/root.dart';
 import 'package:ez_backend/ui/application/error.dart';
 import 'package:ez_backend/ui/application/splash.dart';
 import 'package:ez_backend/intercom/app_config/bloc/app_config_bloc.dart';
-import 'package:ez_backend/ui/constants/colors.dart';
+import 'package:ez_backend/ui/application/theme.dart';
 
 class EzBackendApp extends StatelessWidget {
   const EzBackendApp(this.configInit, {super.key});
@@ -36,11 +36,7 @@ class EzBackendApp extends StatelessWidget {
                     if (snapshot.hasError) {
                       return MaterialApp(
                         title: applicationTitle,
-                        theme: ThemeData(
-                          colorScheme:
-                              ColorScheme.fromSeed(seedColor: systemErrorColor),
-                          useMaterial3: true,
-                        ),
+                        theme: errorTheme(context.read<AppConfig>().colorScheme),
                         home: const ErrorScreen(),
                       );
                     } else {
@@ -49,11 +45,7 @@ class EzBackendApp extends StatelessWidget {
                   } else {
                     return MaterialApp(
                       title: applicationTitle,
-                      theme: ThemeData(
-                        colorScheme:
-                            ColorScheme.fromSeed(seedColor: systemColor),
-                        useMaterial3: true,
-                      ),
+                      theme: splashTheme(context.read<AppConfig>().colorScheme),
                       home: const SplashScreen(),
                     );
                   }
