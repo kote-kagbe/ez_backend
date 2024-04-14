@@ -21,9 +21,9 @@ class AppConfig {
 
   AppConfig([
     this.colorScheme = const AppColorScheme(),
+    this.customColorScheme = false,
     this.systemFolders = const SystemFolders(),
     this.appVersion = '0.0.0.0',
-    this.customColorScheme = false,
   ]);
 
 //////////////////////////////////////////////////////////////////////////////

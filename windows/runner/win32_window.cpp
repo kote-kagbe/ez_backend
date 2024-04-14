@@ -144,13 +144,14 @@ bool Win32Window::Create(const std::wstring& title,
 
   // Calculate window offset from top upper side of the screen depending on current
   // system scale factor
-  int top =  static_cast<int>((screenHeight / 2) - Scale(size.height / 2, scale_factor));
+  int height = (int)size.height > screenHeight ? screenHeight : (int)size.height;
+  int top =  static_cast<int>((screenHeight / 2) - Scale(height / 2, scale_factor));
 
   HWND window = CreateWindow(
       window_class, title.c_str(), WS_OVERLAPPEDWINDOW,
       //Scale(origin.x, scale_factor), Scale(origin.y, scale_factor),
       left, top,
-      Scale(size.width, scale_factor), Scale(size.height, scale_factor),
+      Scale(size.width, scale_factor), Scale(height, scale_factor),
       nullptr, nullptr, GetModuleHandle(nullptr), this);
 
   if (!window) {

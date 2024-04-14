@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,8 +30,13 @@ class AppRootScreen extends StatelessWidget {
                   home: const ErrorScreen(),
                 ),
               AppConfigStateValue.ready => MaterialApp(
+                scrollBehavior: const MaterialScrollBehavior()
+                    .copyWith(dragDevices: PointerDeviceKind.values.toSet()),
                   title: applicationTitle,
                   theme: ThemeData(
+                      scaffoldBackgroundColor: context
+                          .read<AppConfig>()
+                          .colorScheme.mainBackground,
                     colorScheme: ColorScheme.fromSeed(
                         seedColor: context
                             .read<AppConfig>()
