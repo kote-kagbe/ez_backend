@@ -22,7 +22,9 @@ class StandListScreen extends StatelessWidget {
               cfg.customColorScheme = true;
               cfg.colorScheme = AppColorScheme(
                   sideMenuBackground: AppSchemeColor(Colors.yellow.value));
-              context.read<AppConfigBloc>().add(const AppConfigUpdate());
+              context
+                  .read<AppConfigBloc>()
+                  .add(const AppConfigUpdate(configPath: ''));
             },
             icon: const Icon(Icons.abc))
       ]),

@@ -50,12 +50,12 @@ class AppConfig {
     // читаем из файла
     Map<String, dynamic>? json = await _loadConfig(configPath);
     // обновляем цветовую схему
-    if (!resetColorScheme && json != null && json.containsKey('colorScheme')) {
-      colorScheme = AppColorScheme.fromJson(json['colorScheme']);
-      customColorScheme = configPath != null;
-    } else {
+    if (resetColorScheme) {
       customColorScheme = false;
       colorScheme = const AppColorScheme();
+    } else if (json != null && json.containsKey('colorScheme')) {
+      colorScheme = AppColorScheme.fromJson(json['colorScheme']);
+      customColorScheme = customColorScheme && configPath != null;
     }
   }
 
