@@ -5,14 +5,19 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
         body: Expanded(
-            child: Container(
-      color: const Color(0xffc2140a),
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text('системная ошибка')],
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:[
+              Text('системная ошибка')
+            ]
+          ),
+        ]
       ),
-    )));
+    ));
   }
 }

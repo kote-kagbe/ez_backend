@@ -24,11 +24,11 @@ ThemeData appTheme(AppColorScheme scheme){
 
 ThemeData errorTheme(AppColorScheme scheme){
   return appTheme(scheme).copyWith(
-    scaffoldBackgroundColor: scheme.error,
+    scaffoldBackgroundColor: scheme.sideMenuBackground,
     colorScheme: ColorScheme.fromSeed(
-        seedColor: scheme.error),
+        seedColor: scheme.sideMenuBackground),
     textTheme: TextTheme(
-      bodyMedium: TextStyle(color: scheme.mainText),
+      bodyMedium: TextStyle(color: scheme.error, fontWeight: FontWeight.bold),
     ),
   );
 }

@@ -21,27 +21,23 @@ class AppRootScreen extends StatelessWidget {
     return BlocBuilder<AppConfigBloc, AppConfigState>(
         buildWhen: (prevState, newState) => prevState != newState,
         builder: (context, state) => switch (state.value) {
-              AppConfigStateValue.error => MaterialApp(
-                  title: applicationTitle,
-                  theme: ThemeData(
-                    colorScheme:
-                        ColorScheme.fromSeed(seedColor: systemErrorColor),
-                    useMaterial3: true,
-                  ),
-                  home: const ErrorScreen(),
-                ),
-              AppConfigStateValue.ready => MaterialApp(
-                scrollBehavior: const MaterialScrollBehavior()
-                    .copyWith(dragDevices: PointerDeviceKind.values.toSet()),
-                  title: applicationTitle,
-                  theme: appTheme(context.read<AppConfig>().colorScheme) ,
-                  home: const StandListScreen(),
-                ),
-              _ => MaterialApp(
-                  title: applicationTitle,
-                  theme: splashTheme(context.read<AppConfig>().colorScheme),
-                  home: const SplashScreen(),
-                )
+          AppConfigStateValue.error => MaterialApp(
+              title: applicationTitle,
+              theme: errorTheme(context.read<AppConfig>().colorScheme),
+              home: const ErrorScreen(),
+            ),
+          AppConfigStateValue.ready => MaterialApp(
+            scrollBehavior: const MaterialScrollBehavior()
+                .copyWith(dragDevices: PointerDeviceKind.values.toSet()),
+              title: applicationTitle,
+              theme: appTheme(context.read<AppConfig>().colorScheme) ,
+              home: const StandListScreen(),
+            ),
+          _ => MaterialApp(
+              title: applicationTitle,
+              theme: splashTheme(context.read<AppConfig>().colorScheme),
+              home: const SplashScreen(),
+            )
         }
     );
   }
