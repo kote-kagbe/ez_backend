@@ -3,6 +3,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:ez_backend/intercom/app_config/color_scheme.dart';
 import 'package:ez_backend/intercom/app_config/system_folders.dart';
+import 'package:ez_backend/intercom/app_config/theme.dart';
 
 part 'app_config.g.dart';
 
@@ -24,6 +25,7 @@ class AppConfig {
     this.customColorScheme = false,
     this.systemFolders = const SystemFolders(),
     this.appVersion = '0.0.0.0',
+    this.theme = const AppTheme(),
   ]);
 
 //////////////////////////////////////////////////////////////////////////////
@@ -36,6 +38,7 @@ class AppConfig {
   // вычисляемые элементы
   SystemFolders systemFolders;
   String appVersion;
+  AppTheme theme;
 //////////////////////////////////////////////////////////////////////////////
 
   // метод для перечитывания конфига с диска
@@ -55,8 +58,10 @@ class AppConfig {
       colorScheme = const AppColorScheme();
     } else if (json != null && json.containsKey('colorScheme')) {
       colorScheme = AppColorScheme.fromJson(json['colorScheme']);
-      customColorScheme = customColorScheme && configPath != null;
+      customColorScheme = configPath != null;
     }
+    // заполняем темы оформления
+    theme = theme.setup(colorScheme);
   }
 
   Future<Map<String, dynamic>?> _loadConfig(String? path) async {

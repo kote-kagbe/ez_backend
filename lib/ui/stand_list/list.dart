@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ez_backend/intercom/app_config/app_config.dart';
 import 'package:ez_backend/ui/stand_list/drawer.dart';
 import 'package:ez_backend/intercom/constants/strings.dart';
-import 'package:ez_backend/ui/application/theme.dart';
+import 'package:ez_backend/intercom/app_config/theme.dart';
 
 class StandListScreen extends StatelessWidget {
   const StandListScreen({super.key});
@@ -15,13 +15,17 @@ class StandListScreen extends StatelessWidget {
     final cfg = context.read<AppConfig>();
     return Scaffold(
       body: RefreshIndicator(
-        onRefresh: ()async{return Future.delayed(Duration(seconds: 4));},
-        child: ListView(children: [Text('sd')],)),
-      drawer: Theme(data: drawerTheme(cfg.colorScheme), child:  StandListDrawer()),
+          onRefresh: () async {
+            return Future.delayed(Duration(seconds: 4));
+          },
+          child: ListView(
+            children: [Text('sd')],
+          )),
+      drawer: Theme(data: cfg.theme.drawerTheme!, child: StandListDrawer()),
       appBar: AppBar(
           title: const Text(
-            applicationTitle,
-          )),
+        applicationTitle,
+      )),
     );
   }
 }

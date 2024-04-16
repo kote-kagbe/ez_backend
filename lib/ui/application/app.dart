@@ -9,7 +9,6 @@ import 'package:ez_backend/ui/application/root.dart';
 import 'package:ez_backend/ui/application/error.dart';
 import 'package:ez_backend/ui/application/splash.dart';
 import 'package:ez_backend/intercom/app_config/bloc/app_config_bloc.dart';
-import 'package:ez_backend/ui/application/theme.dart';
 
 class EzBackendApp extends StatelessWidget {
   const EzBackendApp(this.configInit, {super.key});
@@ -18,6 +17,7 @@ class EzBackendApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cfg = context.read<AppConfig>();
     return MultiRepositoryProvider(
         providers: [
           RepositoryProvider<AppConfig>(create: (_) => AppConfig.instance())
@@ -36,7 +36,7 @@ class EzBackendApp extends StatelessWidget {
                     if (snapshot.hasError) {
                       return MaterialApp(
                         title: applicationTitle,
-                        theme: errorTheme(context.read<AppConfig>().colorScheme),
+                        theme: cfg.theme.errorTheme,
                         home: const ErrorScreen(),
                       );
                     } else {
@@ -45,7 +45,7 @@ class EzBackendApp extends StatelessWidget {
                   } else {
                     return MaterialApp(
                       title: applicationTitle,
-                      theme: splashTheme(context.read<AppConfig>().colorScheme),
+                      theme: cfg.theme.splashTheme,
                       home: const SplashScreen(),
                     );
                   }
