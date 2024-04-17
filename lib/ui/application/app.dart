@@ -12,10 +12,17 @@ import 'package:ez_backend/ui/application/error.dart';
 import 'package:ez_backend/ui/application/splash.dart';
 import 'package:ez_backend/intercom/app_config/bloc/app_config_bloc.dart';
 
-class EzBackendApp extends StatelessWidget {
+class EzBackendApp extends StatefulWidget {
   const EzBackendApp(this.configInit, {super.key});
 
   final Future configInit;
+
+  @override
+  State<EzBackendApp> createState() => _EzBackenAppState();
+}
+
+class _EzBackenAppState extends State<EzBackendApp> {
+  final theme = const AppTheme().setup(const AppColorScheme());
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +38,8 @@ class EzBackendApp extends StatelessWidget {
               ),
             ],
             child: FutureBuilder(
-                future: configInit,
+                future: widget.configInit,
                 builder: (context, snapshot) {
-                  final theme = const AppTheme().setup(const AppColorScheme());
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasError) {
                       return MaterialApp(
