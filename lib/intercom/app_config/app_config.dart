@@ -20,13 +20,15 @@ class AppConfig {
 
   factory AppConfig.instance() => _instance;
 
-  AppConfig([
+  AppConfig({
+    // конфиг
     this.colorScheme = const AppColorScheme(),
     this.customColorScheme = false,
+    // вычисляемые
     this.systemFolders = const SystemFolders(),
     this.appVersion = '0.0.0.0',
     this.theme = const AppTheme(),
-  ]);
+  });
 
 //////////////////////////////////////////////////////////////////////////////
   // элементы файла конфига

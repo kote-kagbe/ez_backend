@@ -10,7 +10,6 @@ import 'package:ez_backend/ui/stand_list/list.dart';
 import 'package:ez_backend/intercom/constants/strings.dart'
     show applicationTitle;
 import 'package:ez_backend/intercom/app_config/app_config.dart' show AppConfig;
-import 'package:ez_backend/intercom/app_config/theme.dart';
 
 class AppRootScreen extends StatelessWidget {
   const AppRootScreen({super.key});

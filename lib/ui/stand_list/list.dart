@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ez_backend/intercom/app_config/app_config.dart';
 import 'package:ez_backend/ui/stand_list/drawer.dart';
 import 'package:ez_backend/intercom/constants/strings.dart';
-import 'package:ez_backend/intercom/app_config/theme.dart';
 
 class StandListScreen extends StatelessWidget {
   const StandListScreen({super.key});
