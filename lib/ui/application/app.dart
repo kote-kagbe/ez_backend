@@ -1,3 +1,5 @@
+import 'package:ez_backend/intercom/app_config/color_scheme.dart';
+import 'package:ez_backend/intercom/app_config/theme.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +19,6 @@ class EzBackendApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cfg = context.read<AppConfig>();
     return MultiRepositoryProvider(
         providers: [
           RepositoryProvider<AppConfig>(create: (_) => AppConfig.instance())
@@ -32,11 +33,12 @@ class EzBackendApp extends StatelessWidget {
             child: FutureBuilder(
                 future: configInit,
                 builder: (context, snapshot) {
+                  final theme = const AppTheme().setup(const AppColorScheme());
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasError) {
                       return MaterialApp(
                         title: applicationTitle,
-                        theme: cfg.theme.errorTheme,
+                        theme: theme.errorTheme,
                         home: const ErrorScreen(),
                       );
                     } else {
@@ -45,7 +47,7 @@ class EzBackendApp extends StatelessWidget {
                   } else {
                     return MaterialApp(
                       title: applicationTitle,
-                      theme: cfg.theme.splashTheme,
+                      theme: theme.splashTheme,
                       home: const SplashScreen(),
                     );
                   }

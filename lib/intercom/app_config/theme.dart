@@ -9,11 +9,12 @@ class AppTheme {
   final ThemeData? appTheme, errorTheme, splashTheme, drawerTheme;
 
   AppTheme setup(AppColorScheme scheme) {
+    final app = _appTheme(scheme);
     return AppTheme(
-        appTheme: _appTheme(scheme),
-        errorTheme: _errorTheme(scheme),
-        splashTheme: _splashTheme(scheme),
-        drawerTheme: _drawerTheme(scheme));
+        appTheme: app,
+        errorTheme: _errorTheme(app, scheme),
+        splashTheme: _splashTheme(app, scheme),
+        drawerTheme: _drawerTheme(app, scheme));
   }
 
   ThemeData? _appTheme(AppColorScheme scheme) {
@@ -35,8 +36,8 @@ class AppTheme {
     );
   }
 
-  ThemeData? _errorTheme(AppColorScheme scheme) {
-    return appTheme?.copyWith(
+  ThemeData? _errorTheme(ThemeData? base, AppColorScheme scheme) {
+    return base?.copyWith(
       scaffoldBackgroundColor: scheme.sideMenuBackground,
       colorScheme: ColorScheme.fromSeed(seedColor: scheme.sideMenuBackground),
       textTheme: TextTheme(
@@ -45,8 +46,8 @@ class AppTheme {
     );
   }
 
-  ThemeData? _splashTheme(AppColorScheme scheme) {
-    return appTheme?.copyWith(
+  ThemeData? _splashTheme(ThemeData? base, AppColorScheme scheme) {
+    return base?.copyWith(
       scaffoldBackgroundColor: scheme.sideMenuBackground,
       colorScheme: ColorScheme.fromSeed(seedColor: scheme.sideMenuBackground),
       textTheme: TextTheme(
@@ -55,8 +56,8 @@ class AppTheme {
     );
   }
 
-  ThemeData? _drawerTheme(AppColorScheme scheme) {
-    return appTheme?.copyWith(
+  ThemeData? _drawerTheme(ThemeData? base, AppColorScheme scheme) {
+    return base?.copyWith(
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
             overlayColor:
