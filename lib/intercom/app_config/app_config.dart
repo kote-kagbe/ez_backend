@@ -4,6 +4,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:ez_backend/intercom/app_config/color_scheme.dart';
 import 'package:ez_backend/intercom/app_config/system_folders.dart';
 import 'package:ez_backend/intercom/app_config/theme.dart';
+import 'package:ez_backend/intercom/constants/strings.dart';
 
 part 'app_config.g.dart';
 
@@ -43,15 +44,31 @@ class AppConfig {
   AppTheme theme;
 //////////////////////////////////////////////////////////////////////////////
 
-  // метод для перечитывания конфига с диска
-  Future<void> update(
-      {String? configPath, bool resetColorScheme = false}) async {
+  Future<void> init() async {
     await Future.delayed(const Duration(seconds: 4));
     // папки в первую очередь
     systemFolders = await systemFolders.setup();
     // версия
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     appVersion = '${packageInfo.version}.${packageInfo.buildNumber}';
+    // читаем из файла
+    Map<String, dynamic>? json =
+        await _loadConfig('${systemFolders.dataFolder}$configExtension');
+    // обновляем цветовую схему
+    if (json != null && json.containsKey('colorScheme')) {
+      colorScheme = AppColorScheme.fromJson(json['colorScheme']);
+    } else {
+      customColorScheme = false;
+      colorScheme = const AppColorScheme();
+    }
+    // заполняем темы оформления
+    theme = theme.setup(colorScheme);
+  }
+
+  // метод для перечитывания конфига с диска
+  Future<void> update(
+      {String? configPath, bool resetColorScheme = false}) async {
+    await Future.delayed(const Duration(seconds: 4));
     // читаем из файла
     Map<String, dynamic>? json = await _loadConfig(configPath);
     // обновляем цветовую схему

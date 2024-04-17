@@ -7,7 +7,7 @@ import 'package:ez_backend/intercom/app_config/app_config.dart';
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
-    final cfgInit = AppConfig.instance().update();
+    final cfgInit = AppConfig.instance().init();
     FlutterError.onError = (FlutterErrorDetails errorDetails) {
       //
     };
